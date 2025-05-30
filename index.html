@@ -20,7 +20,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
 
-    const response = await fetch("https://gpmx.abrie-vanschoor.workers.dev/", {
+    const response = await fetch("https://gpmxweb.abrie-vanschoor.workers.dev/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
