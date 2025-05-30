@@ -1,0 +1,13 @@
+name: Example Workflow
+on:
+  repository_dispatch:
+    types: [from-js]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Secret Token
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_SECRET }}
+        run: |
+          curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
