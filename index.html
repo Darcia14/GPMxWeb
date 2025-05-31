@@ -14,26 +14,29 @@
   <button type="submit">Submit</button>
 </form>
 
-<script>
-document.querySelector('form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+ <script>
+    const form = document.getElementById('submissionForm');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-    const response = await fetch("https://gpmxweb.abrie-vanschoor.workers.dev/", {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      const response = await fetch("https://gpmxweb.abrie-vanschoor.workers.dev/", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ name, email })
-    });
+      });
 
-    if (response.ok) {
+      if (response.ok) {
         alert("Submitted successfully!");
-    } else {
+        form.reset();
+      } else {
         const errorText = await response.text();
         alert("Error: " + errorText);
-    }
-});
-
-</script>
+        console.error("Error detail:", errorText);
+      }
+    });
+  </script>
